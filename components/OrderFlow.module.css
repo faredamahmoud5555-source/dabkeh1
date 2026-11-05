@@ -1,0 +1,355 @@
+/* ==========================================================================
+   OrderFlow: shared by the quick cart drawer (data-variant="drawer")
+   and the /cart page (data-variant="page")
+   ========================================================================== */
+
+.flow {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: var(--white);
+}
+
+/* Wrapper for the current view; a short fade plays when the view changes. */
+.view {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+  animation: view-in 240ms var(--ease) both;
+}
+
+@keyframes view-in {
+  from {
+    opacity: 0;
+    transform: translateX(calc(0.75rem * var(--dir-sign)));
+  }
+}
+
+/* ------------------------------ Header ----------------------------------- */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.9rem;
+  padding-inline: 1.5rem 1.25rem;
+  border-bottom: var(--border);
+}
+
+.title {
+  font-size: 1.9rem;
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid transparent;
+  background: transparent;
+  transition:
+    background-color var(--fast) var(--ease),
+    color var(--fast) var(--ease);
+}
+
+.close:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.close:active {
+  background: var(--gray-700);
+  color: var(--white);
+}
+
+/* Progress: 1 order, 2 details, 3 send. Only on the /cart page. */
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+
+.step {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--gray-600);
+  font-size: var(--text-sm);
+}
+
+.stepNum {
+  display: inline-grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1px solid var(--gray-400);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.step[aria-current="step"] {
+  color: var(--black);
+  font-weight: 600;
+}
+
+.step[aria-current="step"] .stepNum {
+  border-color: var(--black);
+  background: var(--black);
+  color: var(--white);
+}
+
+.step[data-done="true"] .stepNum {
+  border-color: var(--black);
+  color: var(--black);
+}
+
+/* ------------------------------- Body ------------------------------------ */
+
+/* Scrolling content area (drawer). Shared with CheckoutForm. */
+.body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+/* Bottom area (drawer) or summary card (page). Shared with CheckoutForm. */
+.footer {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.1rem 1.5rem calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  border-top: var(--border);
+  background: var(--white);
+}
+
+/* <form> wrapper that lets .body scroll and .footer stay put. */
+.formShell {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.continue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+  padding-block: 0.35rem;
+  font-size: var(--text-sm);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+[dir="rtl"] .continue svg {
+  transform: scaleX(-1);
+}
+
+.state {
+  padding-block: 2rem;
+  color: var(--gray-600);
+}
+
+.empty {
+  display: grid;
+  justify-items: start;
+  gap: 0.75rem;
+  padding-block: 2.5rem;
+  color: var(--gray-600);
+}
+
+.emptyTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--black);
+}
+
+.totals {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+}
+
+.totals > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.totals dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.grand {
+  padding-top: 0.6rem;
+  border-top: var(--hairline);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+}
+
+.fineprint {
+  color: var(--gray-600);
+  font-size: var(--text-sm);
+}
+
+.linkButton {
+  justify-self: center;
+  min-height: 2.5rem;
+  padding: 0.25rem 0.75rem;
+  border: 0;
+  background: transparent;
+  color: var(--gray-600);
+  font-size: var(--text-sm);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--fast) var(--ease);
+}
+
+.linkButton:hover {
+  color: var(--black);
+}
+
+/* The one action that matters most: sending the order. */
+.flow .sendButton {
+  min-height: 4rem;
+  font-size: 1.0625rem;
+  letter-spacing: 0.06em;
+}
+
+/* Confirmation views */
+.lead {
+  font-size: var(--text-lg);
+  line-height: 1.5;
+}
+
+.note {
+  margin-top: 0.9rem;
+  color: var(--gray-600);
+}
+
+.facts {
+  display: grid;
+  margin: 1.75rem 0 0.75rem;
+  border-top: var(--border);
+}
+
+.facts > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.85rem;
+  border-bottom: var(--hairline);
+}
+
+.facts dt {
+  color: var(--gray-600);
+}
+
+.facts dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.reopen {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.preview {
+  margin-top: 1.5rem;
+  font-size: var(--text-sm);
+}
+
+.preview summary {
+  cursor: pointer;
+  padding-block: 0.4rem;
+}
+
+.preview pre {
+  margin: 0.5rem 0 0;
+  padding: 1rem;
+  border: 1px solid var(--gray-300);
+  background: var(--gray-100);
+  font: inherit;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   /cart page: header + steps on top, then items (left) and a sticky summary
+   card (right). Single column on phones.
+   ========================================================================== */
+
+.flow[data-variant="page"] {
+  height: auto;
+  background: transparent;
+}
+
+.flow[data-variant="page"] .header {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 0 0 1.25rem;
+}
+
+.flow[data-variant="page"] .title {
+  font-size: clamp(2.6rem, 1.6rem + 4vw, 4.75rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.flow[data-variant="page"] .view,
+.flow[data-variant="page"] .formShell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+.flow[data-variant="page"] .formShell {
+  padding-top: 0;
+  grid-column: 1 / -1;
+  grid-template-columns: inherit;
+}
+
+.flow[data-variant="page"] .body {
+  overflow: visible;
+  padding: 0;
+}
+
+.flow[data-variant="page"] .footer {
+  border: var(--border);
+  padding: 1.5rem;
+}
+
+@media (min-width: 60rem) {
+  .flow[data-variant="page"] .view,
+  .flow[data-variant="page"] .formShell {
+    grid-template-columns: minmax(0, 1fr) 24rem;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  /* The summary stays in view while the list or form scrolls. */
+  .flow[data-variant="page"] .footer {
+    position: sticky;
+    top: calc(var(--nav-height) + 1.5rem);
+  }
+}
+
+/* Phones: only the current step shows its label, so three steps never overflow. */
+@media (max-width: 39.99rem) {
+  .step:not([aria-current="step"]) .stepLabel {
+    display: none;
+  }
+}

@@ -1,0 +1,58 @@
+.stepper {
+  display: inline-flex;
+  align-items: stretch;
+  border: var(--border);
+  background: var(--white);
+}
+
+.button {
+  display: inline-grid;
+  place-items: center;
+  width: var(--step-size, 2.75rem);
+  height: var(--step-size, 2.75rem);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  transition:
+    background-color var(--fast) var(--ease),
+    color var(--fast) var(--ease);
+}
+
+.button:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.value {
+  display: grid;
+  place-items: center;
+  min-width: 2.5rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+.compact .button {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.compact .value {
+  min-width: 2rem;
+  font-size: var(--text-sm);
+}
+
+/* The number "pops" each time it changes (key={quantity} restarts the animation). */
+.value {
+  animation: pop 200ms var(--ease);
+}
+
+@keyframes pop {
+  from {
+    opacity: 0.4;
+    transform: scale(0.75);
+  }
+}
+
+.button:active {
+  transform: scale(0.94);
+}

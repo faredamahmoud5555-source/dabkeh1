@@ -1,0 +1,185 @@
+/* Search + result count: normal flow (not pinned), so it does not eat phone screens. */
+.searchRow {
+  display: grid;
+  gap: 0.6rem;
+  padding-block: 0 1rem;
+}
+
+@media (min-width: 48rem) {
+  .searchRow {
+    grid-template-columns: minmax(18rem, 26rem) 1fr;
+    align-items: center;
+    gap: 1.5rem;
+  }
+}
+
+.search {
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 50%;
+  inset-inline-start: 0.9rem;
+  translate: 0 -50%;
+  color: var(--gray-600);
+  pointer-events: none;
+}
+
+.input {
+  width: 100%;
+  min-height: 3rem;
+  padding-block: 0.5rem;
+  padding-inline: 2.6rem 2.75rem;
+  border: var(--border);
+  border-radius: 0;
+  background: var(--white);
+  -webkit-appearance: none;
+  appearance: none;
+  transition: box-shadow var(--fast) var(--ease);
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--black);
+  outline-offset: 2px;
+}
+
+.input::placeholder {
+  color: var(--gray-600);
+}
+
+.input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.clearSearch {
+  position: absolute;
+  top: 50%;
+  inset-inline-end: 0.3rem;
+  translate: 0 -50%;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  background: transparent;
+  transition: background-color var(--fast) var(--ease);
+}
+
+.clearSearch:hover {
+  background: var(--gray-100);
+}
+
+.clearSearch:active {
+  background: var(--gray-200);
+}
+
+.status {
+  color: var(--gray-600);
+  font-size: var(--text-sm);
+}
+
+/* Pinned category chips. */
+.chipsBar {
+  position: sticky;
+  top: var(--nav-height);
+  z-index: 30;
+  padding-block: 0.5rem;
+  background: var(--white);
+  border-block: var(--hairline);
+}
+
+.results {
+  scroll-margin-top: 9rem;
+  padding-top: clamp(1.5rem, 4vw, 2.5rem);
+  padding-bottom: var(--section-space);
+}
+
+/* Re-keyed when the category changes, so the list fades in smoothly. */
+.groups {
+  animation: list-in 280ms var(--ease) both;
+}
+
+@keyframes list-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.group + .group {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+}
+
+.group {
+  scroll-margin-top: 8rem;
+}
+
+.groupTitle {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: var(--border);
+  font-size: var(--text-2xl);
+  line-height: 1.05;
+}
+
+.groupCount {
+  color: var(--gray-600);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.empty {
+  display: grid;
+  justify-items: start;
+  gap: 0.75rem;
+  max-width: 34rem;
+  margin-top: 1rem;
+  padding: 2.5rem 0;
+  border-top: var(--border);
+  color: var(--gray-600);
+}
+
+.emptyTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--black);
+}
+
+/* Desktop: the category heading sits in a left column and stays in view beside its dishes. */
+@media (min-width: 64rem) {
+  .group {
+    display: grid;
+    grid-template-columns: 14rem minmax(0, 1fr);
+    column-gap: 3rem;
+    align-items: start;
+  }
+
+  .groupTitle {
+    position: sticky;
+    top: 10rem;
+    display: block;
+    padding-bottom: 0;
+    border-bottom: 0;
+    font-size: var(--text-2xl);
+  }
+
+  .groupCount {
+    display: block;
+    margin-top: 0.6rem;
+  }
+
+  .list {
+    border-top: var(--border);
+  }
+}
+
+/* Between 1024 and 1200px the chips wrap to two rows, so the pinned bar is taller. */
+@media (min-width: 64rem) and (max-width: 75rem) {
+  .groupTitle {
+    top: 12rem;
+  }
+}

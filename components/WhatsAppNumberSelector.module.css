@@ -1,0 +1,111 @@
+.fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.legend {
+  padding: 0;
+  margin-bottom: 0.6rem;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.options {
+  display: grid;
+  gap: 0.6rem;
+}
+
+@media (min-width: 30rem) {
+  .options {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--gray-400);
+  cursor: pointer;
+  transition:
+    border-color var(--fast) var(--ease),
+    background-color var(--fast) var(--ease);
+}
+
+.option:hover {
+  border-color: var(--black);
+}
+
+.option:has(.radio:checked) {
+  border-color: var(--black);
+  box-shadow: inset 0 0 0 1px var(--black);
+  background: var(--gray-100);
+}
+
+.option:has(.radio:focus-visible) {
+  outline: 2px solid var(--black);
+  outline-offset: 2px;
+}
+
+/* Native radio stays in the DOM for keyboards and screen readers. */
+.radio {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.indicator {
+  flex: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 1px solid var(--black);
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: inset 0 0 0 3px var(--white);
+  transition: background-color var(--fast) var(--ease);
+}
+
+.radio:checked ~ .indicator {
+  background: var(--black);
+}
+
+.text {
+  display: grid;
+  min-width: 0;
+}
+
+.optionLabel {
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.number {
+  color: var(--gray-600);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.icon {
+  margin-inline-start: auto;
+  flex: none;
+  color: var(--gray-600);
+}
+
+.error {
+  margin-top: 0.5rem;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.unavailable {
+  padding: 1rem;
+  border: 1px dashed var(--black);
+  font-size: var(--text-sm);
+}

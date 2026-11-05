@@ -1,0 +1,63 @@
+/**
+ * DRAFT descriptions (English + Arabic), keyed by dish id.
+ * ---------------------------------------------------------------------------
+ * These were written for this website. They are NOT from the printed menu and have
+ * NOT been checked against the restaurant's recipes. They are hidden by default.
+ * Set `menu.showDescriptions: true` in config/restaurant.js to show them (after you
+ * have corrected them).
+ */
+
+export const descriptions = {
+  "fattoush": { en: "Crisp Lebanese salad of mixed greens and vegetables with toasted bread and a sumac dressing.", ar: "سلطة لبنانية مقرمشة من الخضار الطازجة مع الخبز المحمص وصلصة السماق." },
+  "tabbouleh": { en: "Finely chopped parsley, tomato, mint and burghul with lemon juice and olive oil.", ar: "بقدونس مفروم ناعماً مع البندورة والنعناع والبرغل وعصير الليمون وزيت الزيتون." },
+  "lebanese-hummus": { en: "Creamy chickpea dip blended with tahini, lemon and olive oil.", ar: "حمص ناعم مهروس مع الطحينة والليمون وزيت الزيتون." },
+  "hummus-with-meat": { en: "Creamy hummus topped with sautéed spiced meat.", ar: "حمص ناعم مغطى باللحمة المحمّرة والمتبّلة." },
+  "mountain-hummus": { en: "Hummus, mountain style.", ar: "حمص على الطريقة الجبلية." },
+  "al-raheb-mutabbal": { en: "Smoky aubergine dip, prepared the monk's way.", ar: "متبّل باذنجان مدخّن على طريقة الراهب." },
+  "spicy-potatoes": { en: "Fried potato cubes tossed with garlic, coriander and chilli.", ar: "مكعبات بطاطا مقلية مع الثوم والكزبرة والفلفل الحار." },
+  "sausages-pomegranate": { en: "Pan-fried sausages glazed with pomegranate molasses.", ar: "نقانق مقلية مغطاة بدبس الرمان." },
+  "kibbeh": { en: "Fried shells of burghul and minced meat, filled with spiced meat and pine nuts.", ar: "أقراص كبة مقلية من البرغل واللحم المفروم، محشوة باللحمة والصنوبر." },
+  "stuffed-vine-leaves": { en: "Vine leaves rolled around seasoned rice and herbs.", ar: "ورق عنب ملفوف بالأرز المتبّل والأعشاب." },
+  "eggplant-mutabbal": { en: "Smoked aubergine blended with tahini, garlic and lemon.", ar: "باذنجان مشوي مهروس مع الطحينة والثوم والليمون." },
+  "hummus-fatteh": { en: "Crisp toasted bread layered with warm chickpeas, yoghurt and tahini sauce.", ar: "خبز محمص مقرمش مع الحمص الدافئ وصلصة اللبن والطحينة." },
+  "eggplant-fatteh": { en: "Toasted bread layered with fried aubergine, yoghurt and tahini sauce.", ar: "خبز محمص مع الباذنجان المقلي وصلصة اللبن والطحينة." },
+  "chicken-rice-fatteh": { en: "Toasted bread, rice and shredded chicken under a garlicky yoghurt sauce.", ar: "خبز محمص وأرز ودجاج مفتّت تحت صلصة اللبن بالثوم." },
+  "kibbeh-fatteh": { en: "Toasted bread layered with kibbeh and yoghurt sauce.", ar: "خبز محمص مع الكبة وصلصة اللبن." },
+  "meat-fatteh": { en: "Toasted bread layered with spiced meat and yoghurt sauce.", ar: "خبز محمص مع اللحمة المتبّلة وصلصة اللبن." },
+  "vine-leaves-fatteh": { en: "Toasted bread layered with stuffed vine leaves and yoghurt sauce.", ar: "خبز محمص مع ورق العنب المحشي وصلصة اللبن." },
+  "dabke-zaatar": { en: "Zaatar flatbread.", ar: "منقوشة زعتر." },
+  "zaatar": { en: "Flatbread baked with thyme, sesame and olive oil.", ar: "عجينة مخبوزة بالزعتر والسمسم وزيت الزيتون." },
+  "zaatar-pomegranate": { en: "Zaatar flatbread finished with pomegranate molasses.", ar: "منقوشة زعتر مع دبس الرمان." },
+  "mountain-zaatar": { en: "Flatbread baked with mountain-style zaatar.", ar: "منقوشة مخبوزة بزعتر الجبل." },
+  "zaatar-cheese": { en: "Zaatar and melted cheese on fresh flatbread.", ar: "زعتر وجبنة ذائبة على عجينة طازجة." },
+  "zaatar-labneh": { en: "Zaatar flatbread served with creamy labneh.", ar: "منقوشة زعتر مع اللبنة الكريمية." },
+  "akkawi-cheese": { en: "Flatbread topped with melted akkawi cheese.", ar: "عجينة مغطاة بجبنة العكاوي الذائبة." },
+  "labneh-manakish": { en: "Flatbread spread with creamy labneh.", ar: "عجينة مدهونة باللبنة الكريمية." },
+  "tomato-onion-cheese": { en: "Flatbread with tomato, onion and melted cheese.", ar: "عجينة بالبندورة والبصل والجبنة الذائبة." },
+  "akkawi-kashkaval": { en: "Flatbread with a blend of akkawi and kashkaval cheeses.", ar: "عجينة بخليط من جبنتي العكاوي والكاشكافال." },
+  "mortadella-cheese": { en: "Flatbread with mortadella and melted cheese.", ar: "عجينة بالمرتديلا والجبنة الذائبة." },
+  "qawarma-manakish": { en: "Flatbread topped with qawarma, preserved spiced meat.", ar: "عجينة بالقاورما، اللحم المحفوظ بتتبيلته." },
+  "spinach": { en: "Flatbread filled with seasoned spinach.", ar: "عجينة محشوة بالسبانخ المتبّلة." },
+  "spinach-cheese": { en: "Flatbread with seasoned spinach and cheese.", ar: "عجينة بالسبانخ المتبّلة والجبنة." },
+  "lahm-bi-ajeen": { en: "Flatbread topped with minced spiced meat.", ar: "عجينة مغطاة باللحم المفروم المتبّل." },
+  "meat-cheese": { en: "Flatbread with spiced minced meat and melted cheese.", ar: "عجينة باللحم المفروم المتبّل والجبنة الذائبة." },
+  "kafta": { en: "Flatbread with seasoned kafta.", ar: "عجينة بالكفتة المتبّلة." },
+  "kafta-cheese": { en: "Flatbread with seasoned kafta and melted cheese.", ar: "عجينة بالكفتة المتبّلة والجبنة الذائبة." },
+  "roast-beef": { en: "Flatbread with sliced roast beef.", ar: "عجينة بشرائح الروستو." },
+  "shish-tawook": { en: "Flatbread with marinated grilled chicken.", ar: "عجينة بالدجاج المتبّل المشوي." },
+  "eggs-cheese": { en: "Flatbread baked with eggs and cheese.", ar: "عجينة مخبوزة بالبيض والجبنة." },
+  "muhammara": { en: "Flatbread with muhammara, a red pepper and walnut spread.", ar: "عجينة بالمحمّرة، معجون الفلفل الأحمر والجوز." },
+  "halloumi-manakish": { en: "Flatbread with halloumi cheese.", ar: "عجينة بجبنة الحلوم." },
+  "dazine-meat-sfiha": { en: "A dozen small open-faced meat pies.", ar: "دزينة من الصفائح الصغيرة المفتوحة باللحمة." },
+  "dazine-spinach": { en: "A dozen small spinach pies.", ar: "دزينة من الفطائر الصغيرة بالسبانخ." },
+  "grilled-halloumi": { en: "Slices of halloumi cheese, grilled until golden.", ar: "شرائح جبنة حلوم مشوية حتى تصبح ذهبية." },
+  "lebanese-foul": { en: "Fava beans in the Lebanese style, with lemon, garlic and olive oil.", ar: "فول على الطريقة اللبنانية بالليمون والثوم وزيت الزيتون." },
+  "mishawsha": { en: "Scrambled eggs, Lebanese style.", ar: "بيض مخفوق على الطريقة اللبنانية." },
+  "cheese-omelette": { en: "Fluffy omelette filled with melted cheese.", ar: "أومليت طري محشو بالجبنة الذائبة." },
+  "qawarma-eggs": { en: "Eggs cooked with qawarma, preserved spiced meat.", ar: "بيض مطهو مع القاورما، اللحم المحفوظ بتتبيلته." },
+  "labneh-plate": { en: "Creamy strained yoghurt drizzled with olive oil.", ar: "لبنة كريمية مع رذاذ من زيت الزيتون." },
+  "zaatar-olive-oil-plate": { en: "Zaatar with olive oil, for dipping.", ar: "زعتر مع زيت الزيتون للتغميس." },
+  "ayran": { en: "Cold, lightly salted yoghurt drink.", ar: "مشروب لبن بارد مملّح قليلاً." },
+  "soft-drinks": { en: "A choice of soft drinks.", ar: "تشكيلة من المشروبات الغازية." },
+  "water": { en: "Drinking water.", ar: "مياه شرب." },
+};

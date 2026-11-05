@@ -1,0 +1,210 @@
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 1rem;
+  row-gap: 0.3rem;
+  align-items: start;
+  padding-block: 1.25rem;
+  border-bottom: var(--hairline);
+}
+
+/* A black bar marks dishes that are in the order. */
+.row::before {
+  content: "";
+  position: absolute;
+  inset-block: 1.25rem;
+  inset-inline-start: -0.85rem;
+  width: 3px;
+  background: var(--black);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform var(--medium) var(--ease);
+}
+
+.row[data-in-cart="true"]::before {
+  transform: scaleY(1);
+}
+
+.head {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.name {
+  min-width: 0;
+  font-size: clamp(1.4rem, 1.15rem + 0.9vw, 1.8rem);
+  line-height: 1.15;
+}
+
+.leader {
+  flex: 1 1 1rem;
+  height: 0;
+  border-bottom: 1px dotted var(--gray-400);
+  translate: 0 -0.3em;
+  transition: border-color var(--fast) var(--ease);
+}
+
+@media (hover: hover) {
+  .row:hover .leader {
+    border-bottom-color: var(--black);
+  }
+}
+
+.price {
+  flex: none;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.description {
+  grid-column: 1;
+  max-width: 50ch;
+  color: var(--gray-600);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.meta {
+  grid-column: 1;
+  margin-top: 0.25rem;
+}
+
+
+/* The control sits beside the description (phones) or in its own column (desktop). */
+.action {
+  grid-column: 2;
+  grid-row: 2 / span 2;
+  align-self: center;
+  justify-self: end;
+  --step-size: 2.5rem;
+}
+
+.addButton {
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  padding-inline: 0.7rem;
+}
+
+.addText {
+  display: none;
+}
+
+.added {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+}
+
+.addedLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+@media (min-width: 30rem) {
+  .addButton {
+    padding-inline: 1.2rem;
+  }
+
+  .addText {
+    display: inline;
+  }
+
+}
+
+@media (min-width: 48rem) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) 11.5rem;
+    column-gap: 3rem;
+    padding-block: 1.5rem;
+  }
+
+  .row::before {
+    inset-block: 1.5rem;
+    inset-inline-start: -1.25rem;
+  }
+
+  .description {
+    font-size: var(--text-base);
+  }
+
+  .action {
+    --step-size: 2.75rem;
+  }
+}
+
+/* No description (the printed menu has none): one compact line, name ..... price [Add]. */
+.row[data-desc="false"] {
+  align-items: center;
+  padding-block: 0.95rem;
+}
+
+.row[data-desc="false"]::before {
+  inset-block: 0.95rem;
+}
+
+.row[data-desc="false"] .head {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.row[data-desc="false"] .action {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+@media (min-width: 48rem) {
+  .row[data-desc="false"] {
+    padding-block: 1.1rem;
+  }
+
+  .row[data-desc="false"]::before {
+    inset-block: 1.1rem;
+  }
+
+}
+
+/* Phones: name on top, price underneath, the control beside them (long names stay readable). */
+@media (max-width: 47.99rem) {
+  .row[data-desc="false"] .head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.15rem;
+  }
+
+  .row[data-desc="false"] .leader {
+    display: none;
+  }
+}
+
+/* Desktop: keep the price right next to the control instead of a wide empty gap. */
+@media (min-width: 48rem) {
+  .row[data-desc="false"] {
+    grid-template-columns: minmax(0, 1fr) 8.5rem;
+    column-gap: 1.5rem;
+  }
+
+  .row[data-desc="false"] .action {
+    justify-self: stretch;
+  }
+
+  .row[data-desc="false"] .addButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .row[data-desc="false"] .added {
+    align-items: stretch;
+  }
+
+  .row[data-desc="false"] .addedLabel {
+    justify-content: center;
+  }
+}

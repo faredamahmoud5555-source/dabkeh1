@@ -1,0 +1,79 @@
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-block: 0 1.25rem;
+  margin-inline-start: -0.25rem;
+  padding: 0.35rem 0.25rem;
+  border: 0;
+  background: transparent;
+  font-size: var(--text-sm);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.required {
+  margin-bottom: 1.25rem;
+  color: var(--gray-600);
+  font-size: var(--text-sm);
+}
+
+.fields {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.summary {
+  margin: 0;
+}
+
+.summaryTitle {
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.75rem;
+  border-bottom: var(--border);
+  font-size: 1.6rem;
+}
+
+.summaryList {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.summaryList li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.amount {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: var(--hairline);
+  font-size: var(--text-lg);
+}
+
+.feeNote {
+  margin-top: 0.75rem;
+  color: var(--gray-600);
+  font-size: var(--text-sm);
+}
+
+.formError {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--black);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+/* The "back" chevron points the other way in right-to-left layouts. */
+[dir="rtl"] .back svg {
+  transform: scaleX(-1);
+}

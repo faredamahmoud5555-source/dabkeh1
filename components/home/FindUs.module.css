@@ -1,0 +1,113 @@
+.section {
+  padding-bottom: var(--section-space);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "copy"
+    "photo"
+    "card";
+  gap: 2.5rem;
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  border-top: var(--border);
+}
+
+@media (min-width: 60rem) {
+  .grid {
+    grid-template-columns: 22rem minmax(0, 1fr);
+    grid-template-areas:
+      "photo copy"
+      "photo card";
+    column-gap: clamp(3rem, 7vw, 7rem);
+    row-gap: 2.5rem;
+    align-items: start;
+  }
+}
+
+.copy {
+  grid-area: copy;
+}
+
+/* 9:16 photo at its natural proportions (no cropping). */
+.figure {
+  grid-area: photo;
+  margin: 0;
+  width: min(100%, 24rem);
+  justify-self: center;
+}
+
+@media (min-width: 60rem) {
+  .figure {
+    width: 100%;
+    justify-self: stretch;
+  }
+}
+
+.photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: var(--border);
+}
+
+.title {
+  font-size: var(--text-3xl);
+  line-height: 0.98;
+  max-width: 10ch;
+}
+
+.text {
+  max-width: 30ch;
+  margin-top: 1.25rem;
+  font-size: var(--text-lg);
+  color: var(--gray-700);
+}
+
+.cta {
+  margin-top: 2rem;
+  min-height: 3.5rem;
+  padding-inline: 2rem;
+  letter-spacing: 0.08em;
+}
+
+.card {
+  grid-area: card;
+  margin: 0;
+  border-top: var(--border);
+}
+
+.card > div {
+  display: grid;
+  gap: 0.2rem;
+  padding-block: 1.25rem;
+  border-bottom: var(--hairline);
+}
+
+.card dt {
+  color: var(--gray-600);
+  font-size: var(--text-sm);
+}
+
+.card dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  line-height: 1.25;
+}
+
+.phones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+}
+
+.phones a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+}

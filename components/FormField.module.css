@@ -1,0 +1,55 @@
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.optional {
+  font-weight: 400;
+  color: var(--gray-600);
+}
+
+.control {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--black);
+  border-radius: 0;
+  background: var(--white);
+  -webkit-appearance: none;
+  appearance: none;
+  transition: box-shadow var(--fast) var(--ease);
+}
+
+textarea.control {
+  resize: vertical;
+  min-height: 5.5rem;
+}
+
+.control:focus-visible {
+  outline: 2px solid var(--black);
+  outline-offset: 2px;
+}
+
+/* Invalid fields get a heavier border and an icon-free text message,
+   so the state never depends on color alone. */
+.control[aria-invalid="true"] {
+  border-width: 2px;
+  padding: calc(0.7rem - 1px) calc(0.9rem - 1px);
+  background: var(--gray-100);
+}
+
+.hint {
+  color: var(--gray-600);
+  font-size: var(--text-sm);
+}
+
+.error {
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+

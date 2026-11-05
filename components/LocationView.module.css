@@ -1,0 +1,300 @@
+.header {
+  padding-block: clamp(3rem, 7vw, 6rem) clamp(2rem, 4vw, 3.5rem);
+}
+
+.headerInner {
+  display: grid;
+  gap: 1.5rem;
+  align-items: end;
+}
+
+@media (min-width: 56rem) {
+  .headerInner {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+  }
+}
+
+.title {
+  font-size: var(--text-hero);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+
+.intro {
+  max-width: 34rem;
+  font-size: var(--text-lg);
+}
+
+/* ------------------------- Map + details frame ---------------------------- */
+
+/* One bordered frame holds the map and the details, so the map reads as part of the design. */
+.frame {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  border: var(--border);
+  background: var(--white);
+}
+
+/* Phones: the map runs edge to edge. */
+@media (max-width: 47.99rem) {
+  .frame {
+    margin-inline: calc(var(--gutter) * -1);
+    border-inline: 0;
+  }
+}
+
+@media (min-width: 60rem) {
+  .frame {
+    grid-template-columns: minmax(0, 1fr) 27rem;
+  }
+}
+
+.mapCell {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.mapBox {
+  position: relative;
+  height: clamp(20rem, 58svh, 30rem);
+  background: var(--gray-100);
+  overflow: hidden;
+}
+
+@media (min-width: 60rem) {
+  .mapBox {
+    flex: 1 1 auto;
+    height: auto;
+    min-height: clamp(30rem, 70svh, 42rem);
+  }
+}
+
+.map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Visible until the map has loaded. */
+.skeleton {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  background-color: var(--gray-100);
+  color: var(--gray-600);
+  font-size: var(--text-sm);
+  text-align: center;
+  transition: opacity var(--medium) var(--ease);
+}
+
+.skeleton span {
+  max-width: 24rem;
+}
+
+.skeleton[data-loaded="true"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* "Tap to use the map": only on touch screens, until the first tap. */
+.activate {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1.25rem;
+  border: 0;
+  background: transparent;
+}
+
+.activate span {
+  padding: 0.65rem 1.1rem;
+  border: 1px solid var(--white);
+  background: var(--black);
+  color: var(--white);
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .activate {
+    display: flex;
+  }
+}
+
+.mapNote {
+  padding: 0.75rem var(--gutter);
+  border-top: var(--hairline);
+  color: var(--gray-600);
+  font-size: var(--text-sm);
+}
+
+@media (min-width: 48rem) {
+  .mapNote {
+    padding-inline: 1.25rem;
+  }
+}
+
+/* Shown only when no location has been configured. */
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.6rem;
+  padding: 2rem;
+  background-color: var(--gray-100);
+  color: var(--gray-700);
+  text-align: center;
+}
+
+.placeholder > * {
+  max-width: 28rem;
+}
+
+.placeholderTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--black);
+}
+
+/* ------------------------------- Details --------------------------------- */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.5rem, 3vw, 2rem) var(--gutter);
+  border-top: var(--border);
+}
+
+@media (min-width: 60rem) {
+  .panel {
+    padding-inline: 2rem;
+    border-top: 0;
+    border-inline-start: var(--border);
+  }
+}
+
+.details {
+  margin: 0;
+}
+
+.details > div {
+  display: grid;
+  gap: 0.3rem;
+  padding-block: 1.1rem;
+  border-bottom: var(--hairline);
+}
+
+.details:first-child > div {
+  padding-top: 0;
+}
+
+.details dt {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--gray-600);
+  font-size: var(--text-sm);
+}
+
+.details dd {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.details dd.address {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  line-height: 1.2;
+}
+
+.phones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.5rem;
+}
+
+.buttons {
+  display: grid;
+  gap: 0.75rem;
+  padding-block: 1.25rem 1.5rem;
+  border-bottom: var(--hairline);
+}
+
+.directions {
+  min-height: 3.75rem;
+  letter-spacing: 0.08em;
+}
+
+.open {
+  min-height: 3.25rem;
+  letter-spacing: 0.04em;
+}
+
+/* ------------------------- Entrance photo + order ------------------------ */
+
+.photoSection {
+  display: grid;
+  gap: 2.5rem;
+  padding-block: var(--section-space);
+}
+
+@media (min-width: 48rem) {
+  .photoSection {
+    grid-template-columns: auto 1fr;
+    gap: clamp(2.5rem, 6vw, 6rem);
+    align-items: center;
+  }
+}
+
+.figure {
+  margin: 0;
+  width: min(100%, 22rem);
+}
+
+.photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: var(--border);
+}
+
+.figure figcaption {
+  margin-top: 0.75rem;
+  color: var(--gray-600);
+  font-size: var(--text-sm);
+}
+
+.orderBand {
+  display: grid;
+  gap: 1.5rem;
+  justify-items: start;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: var(--black);
+  color: var(--white);
+}
+
+.bandTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  line-height: 1.05;
+}
+
+.bandCta {
+  min-height: 3.5rem;
+  padding-inline: 2rem;
+  letter-spacing: 0.1em;
+}

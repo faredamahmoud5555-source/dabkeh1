@@ -1,0 +1,82 @@
+/* The chip row scrolls sideways inside its own box, never the page. */
+.scroller {
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.group {
+  display: flex;
+  gap: 0.5rem;
+  width: max-content;
+  padding-block: 4px; /* room for focus outlines */
+}
+
+.chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  min-height: 2.5rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--gray-300);
+  background: var(--white);
+  white-space: nowrap;
+  transition:
+    background-color var(--fast) var(--ease),
+    color var(--fast) var(--ease),
+    border-color var(--fast) var(--ease);
+}
+
+.chip:hover {
+  border-color: var(--black);
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--white);
+}
+
+.count {
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--gray-600);
+}
+
+.chip[aria-pressed="true"] .count {
+  color: var(--gray-300);
+}
+
+.chip:active {
+  transform: translateY(1px);
+}
+
+.chip[aria-pressed="false"]:active {
+  background: var(--gray-100);
+}
+
+/* Desktop: show every category (wrapping if needed) instead of clipping a scrolling row. */
+@media (min-width: 64rem) {
+  .scroller {
+    overflow: visible;
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+
+  .group {
+    flex-wrap: wrap;
+    width: auto;
+    gap: 0.3rem;
+  }
+
+  .chip {
+    gap: 0.35rem;
+    padding-inline: 0.65rem;
+    font-size: 0.9375rem;
+  }
+}

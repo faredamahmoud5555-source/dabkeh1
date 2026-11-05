@@ -1,0 +1,63 @@
+/* The native <dialog> is the full-height panel pinned to the right edge. */
+.dialog {
+  position: fixed;
+  inset-block: 0;
+  inset-inline: auto 0;
+  width: min(100vw, 32rem);
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-inline-start: var(--border);
+  background: var(--white);
+  color: var(--black);
+  overflow: hidden;
+}
+
+/* Open and close both animate: the dialog slides, the backdrop fades.
+   (@starting-style + allow-discrete transitions; older browsers just show/hide.) */
+.dialog {
+  transform: translateX(calc(100% * var(--dir-sign)));
+  transition:
+    transform var(--medium) var(--ease),
+    overlay var(--medium) allow-discrete,
+    display var(--medium) allow-discrete;
+}
+
+.dialog[open] {
+  transform: none;
+}
+
+@starting-style {
+  .dialog[open] {
+    transform: translateX(calc(100% * var(--dir-sign)));
+  }
+}
+
+.dialog::backdrop {
+  background: rgb(17 17 17 / 0);
+  transition:
+    background-color var(--medium) ease,
+    overlay var(--medium) allow-discrete,
+    display var(--medium) allow-discrete;
+}
+
+.dialog[open]::backdrop {
+  background: rgb(17 17 17 / 0.55);
+}
+
+@starting-style {
+  .dialog[open]::backdrop {
+    background: rgb(17 17 17 / 0);
+  }
+}
+
+/* Fills the dialog; OrderFlow renders inside it. */
+.panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+

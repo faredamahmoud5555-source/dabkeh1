@@ -1,0 +1,60 @@
+.section {
+  padding-block: var(--section-space);
+}
+
+.grid {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4rem);
+  align-items: center;
+}
+
+@media (min-width: 60rem) {
+  .grid {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(3rem, 7vw, 7rem);
+  }
+}
+
+/* 900 x 1176 photo shown at its own ratio (no crop). A black offset block gives it weight. */
+.figure {
+  position: relative;
+  margin: 0;
+  width: min(100%, 30rem);
+  justify-self: center;
+}
+
+.figure::before {
+  content: "";
+  position: absolute;
+  inset: 1rem -1rem -1rem 1rem;
+  inset-inline: 1rem -1rem;
+  background: var(--black);
+}
+
+.photo {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--black);
+}
+
+.title {
+  font-size: var(--text-3xl);
+  line-height: 0.98;
+  max-width: 12ch;
+}
+
+.text {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 34rem;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  font-size: var(--text-lg);
+  line-height: 1.65;
+  color: var(--gray-700);
+}
+
+.text p:first-child {
+  color: var(--black);
+}

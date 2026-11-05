@@ -1,0 +1,253 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--white);
+  border-bottom: var(--border);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: var(--nav-height);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+}
+
+.divider {
+  width: 1px;
+  height: 1.2em;
+  background: var(--black);
+}
+
+.arabic {
+  font-family: var(--font-arabic);
+  font-size: 1.5rem;
+  letter-spacing: 0;
+  line-height: 1;
+  translate: 0 -0.08em;
+}
+
+.nav {
+  display: none;
+  margin-inline: auto 1.5rem;
+}
+
+.links {
+  display: flex;
+  gap: clamp(1rem, 3vw, 2.25rem);
+}
+
+.link {
+  position: relative;
+  display: inline-block;
+  padding-block: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0.25rem;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--medium) var(--ease);
+}
+
+.link:hover::after,
+.link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cartButton,
+.toggle {
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  border: var(--border);
+  background: var(--white);
+  transition:
+    background-color var(--fast) var(--ease),
+    color var(--fast) var(--ease);
+}
+
+.cartButton {
+  padding: 0.4rem 0.9rem;
+}
+
+.toggle {
+  justify-content: center;
+  width: 2.75rem;
+  padding: 0;
+}
+
+.cartButton:hover,
+.toggle:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding-inline: 0.35rem;
+  border-radius: 999px;
+  background: var(--black);
+  color: var(--white);
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  transition:
+    background-color var(--fast) var(--ease),
+    color var(--fast) var(--ease);
+}
+
+.cartButton:hover .count {
+  background: var(--white);
+  color: var(--black);
+}
+
+.count[data-empty="true"] {
+  background: var(--gray-200);
+  color: var(--gray-700);
+}
+
+.cartButton:hover .count[data-empty="true"] {
+  background: var(--gray-700);
+  color: var(--white);
+}
+
+/* ------------------------- Mobile menu panel ----------------------------- */
+
+.panel {
+  position: absolute;
+  inset: 100% 0 auto 0;
+  display: grid;
+  gap: 1.25rem;
+  padding: 0.5rem var(--gutter) 1.5rem;
+  background: var(--white);
+  border-bottom: var(--border);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.75rem);
+  transition:
+    opacity var(--medium) var(--ease),
+    transform var(--medium) var(--ease),
+    visibility 0s linear var(--medium);
+}
+
+.panel[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.panelLinks {
+  display: grid;
+}
+
+.panelLink {
+  display: block;
+  padding: 0.9rem 0;
+  border-bottom: var(--hairline);
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.panelLink[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+}
+
+.panelLang {
+  width: 100%;
+  min-height: 3rem;
+  justify-content: center;
+}
+
+/* On small phones the header is tight, so the switcher lives in the menu panel. */
+.lang {
+  display: none;
+}
+
+.panelCta {
+  width: 100%;
+  min-height: 3.5rem;
+  letter-spacing: 0.08em;
+}
+
+/* ------------------------------ Desktop ---------------------------------- */
+
+@media (min-width: 30rem) {
+  .lang {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 48rem) {
+  .nav {
+    display: block;
+  }
+
+  .toggle,
+  .panel {
+    display: none;
+  }
+}
+
+@media (max-width: 30rem) {
+  .brand {
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
+    gap: 0.5rem;
+  }
+
+  .arabic {
+    font-size: 1.3rem;
+  }
+
+  .cartLabel {
+    display: none;
+  }
+
+  .cartButton {
+    padding-inline: 0.7rem;
+  }
+}
+
+/* The underline grows from the start edge, which is the right side in Arabic. */
+[dir="rtl"] .link::after {
+  transform-origin: right;
+}
+
+.cartButton:active,
+.toggle:active {
+  background: var(--gray-700);
+  color: var(--white);
+}

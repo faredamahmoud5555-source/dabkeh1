@@ -1,0 +1,373 @@
+/* ==========================================================================
+   Global styles: tokens, reset, typography and a few shared utilities.
+   Component-specific styles live in *.module.css files next to each component.
+   ========================================================================== */
+
+:root {
+  /* Palette: black, white and neutral grays only */
+  --black: #111111; /* brand black */
+  --white: #ffffff;
+  --gray-700: #3d3d3d;
+  --gray-600: #5c5c5c; /* secondary text on white, 6.5:1 */
+  --gray-400: #a3a3a3;
+  --gray-300: #cfcfcf;
+  --gray-200: #e5e5e5; /* brand light border */
+  --gray-100: #f4f4f4;
+  --gray-brand: #777777; /* brand secondary gray: decorative and large text */
+
+  /* Type */
+  --font-display: var(--font-instrument), "Times New Roman", serif;
+  --font-body: var(--font-hanken), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-arabic: var(--font-amiri), "Traditional Arabic", serif;
+  --dir-sign: 1; /* flips to -1 in RTL, used for slide animations */
+
+  /* Fluid type scale */
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.1875rem;
+  --text-xl: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  --text-2xl: clamp(2rem, 1.4rem + 2.4vw, 3.5rem);
+  --text-3xl: clamp(2.75rem, 1.6rem + 5vw, 6rem);
+  --text-hero: clamp(3.75rem, 1.2rem + 8.4vw, 8.5rem);
+
+  /* Layout */
+  --container: 80rem;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --section-space: clamp(4.5rem, 10vw, 9rem);
+  --nav-height: 4.25rem;
+  --border: 1px solid var(--black);
+  --hairline: 1px solid var(--gray-200);
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --fast: 160ms;
+  --medium: 320ms;
+
+  /* Hairline eight-pointed-star lattice (two overlapping squares), used sparingly. */
+  --lattice: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48' fill='none' stroke='%23111' stroke-opacity='.28'%3E%3Crect x='10' y='10' width='28' height='28'/%3E%3Crect x='10' y='10' width='28' height='28' transform='rotate(45 24 24)'/%3E%3C/svg%3E");
+
+  /* Same lattice in white, for dark sections. */
+  --lattice-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48' fill='none' stroke='%23fff' stroke-opacity='.22'%3E%3Crect x='10' y='10' width='28' height='28'/%3E%3Crect x='10' y='10' width='28' height='28' transform='rotate(45 24 24)'/%3E%3C/svg%3E");
+}
+
+/* ------------------------- Arabic / RTL typography ------------------------
+   html[lang="ar"] is set by LanguageProvider (and before first paint by an inline
+   script in app/layout.js). Arabic uses Amiri for headlines and Noto Sans Arabic
+   for text; Latin letters inside Arabic text fall back to Instrument Serif / Hanken. */
+html[lang="ar"] {
+  --font-display: var(--font-amiri), var(--font-instrument), "Times New Roman", serif;
+  --font-body: var(--font-noto-arabic), var(--font-hanken), system-ui, "Segoe UI", sans-serif;
+  --dir-sign: -1;
+}
+
+html[lang="ar"] body {
+  line-height: 1.85;
+}
+
+/* Arabic ascenders and diacritics need more vertical room than the tight Latin headlines. */
+html[lang="ar"] :is(h1, h2, h3) {
+  line-height: 1.3;
+  font-weight: 400;
+}
+
+/* Letter-spacing breaks Arabic letter joining, so it is switched off for all Arabic text.
+   Latin brand wordmarks carry data-latin and keep their tracking. */
+html[lang="ar"] :where(h1, h2, h3, p, a, button, span, li, dt, dd, label, legend, input, textarea, summary):not([data-latin]) {
+  letter-spacing: 0;
+}
+
+/* ------------------------------- Reset ----------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--nav-height) + 1rem);
+  scrollbar-gutter: stable;
+}
+
+/* Smooth anchor and programmatic scrolling (disabled for reduced motion). */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Lock page scroll while the cart drawer (a native <dialog>) is open. */
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+dl,
+dd,
+figure,
+blockquote {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: var(--black);
+  color: var(--white);
+}
+
+/* ------------------------------ Focus ------------------------------------ */
+
+:focus-visible {
+  outline: 2px solid var(--black);
+  outline-offset: 3px;
+}
+
+.on-dark :focus-visible {
+  outline-color: var(--white);
+}
+
+/* ----------------------------- Utilities --------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  inset-inline-start: 0.75rem;
+  z-index: 100;
+  padding: 0.65rem 1rem;
+  background: var(--black);
+  color: var(--white);
+  transform: translateY(-200%);
+  transition: transform var(--fast) var(--ease);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Buttons. Shared by many components, so they live here. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3rem;
+  padding: 0.75rem 1.75rem;
+  border: var(--border);
+  background: var(--black);
+  color: var(--white);
+  font-size: var(--text-base);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  transition:
+    background-color var(--fast) var(--ease),
+    color var(--fast) var(--ease),
+    border-color var(--fast) var(--ease);
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--white);
+  color: var(--black);
+}
+
+.btn:disabled {
+  background: var(--gray-100);
+  border-color: var(--gray-300);
+  color: var(--gray-600);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--black);
+}
+
+.btn-outline:hover:not(:disabled) {
+  background: var(--black);
+  color: var(--white);
+}
+
+/* On black sections the buttons invert. */
+.on-dark .btn {
+  background: var(--white);
+  color: var(--black);
+  border-color: var(--white);
+}
+
+.on-dark .btn:hover:not(:disabled) {
+  background: transparent;
+  color: var(--white);
+}
+
+.on-dark .btn-outline {
+  background: transparent;
+  color: var(--white);
+}
+
+.on-dark .btn-outline:hover:not(:disabled) {
+  background: var(--white);
+  color: var(--black);
+}
+
+/* Pressed states: a 1px push and a darker fill, so every button visibly responds to a tap. */
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn:not(.btn-outline):active:not(:disabled),
+.btn-outline:active:not(:disabled) {
+  background: var(--gray-700);
+  border-color: var(--gray-700);
+  color: var(--white);
+}
+
+.on-dark .btn:not(.btn-outline):active:not(:disabled) {
+  background: var(--gray-300);
+  border-color: var(--gray-300);
+  color: var(--black);
+}
+
+.on-dark .btn-outline:active:not(:disabled) {
+  background: var(--gray-300);
+  border-color: var(--gray-300);
+  color: var(--black);
+}
+
+/* Text link with an underline that tightens on hover. */
+.text-link {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 2px;
+  transition: background-size var(--fast) var(--ease);
+}
+
+.text-link:hover {
+  background-size: 100% 2px;
+}
+
+/* ------------------------- Motion helpers --------------------------------
+   Page transition: Next re-mounts app/template.js on every navigation. */
+.page-enter {
+  animation: page-in 320ms var(--ease) both;
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Subtle scroll reveal. Pure CSS (scroll-driven animations): content is always
+   visible without JavaScript or in browsers that do not support it. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
